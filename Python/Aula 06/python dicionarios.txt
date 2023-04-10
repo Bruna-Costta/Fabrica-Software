@@ -1,0 +1,41 @@
+1.
+estado = dict ()
+brasil = list ()
+for c in range(0, 3):
+   estado ['uf'] = str(input('Unidade Federativa: '))
+   estado ['sigla'] = str(input('Sigla do Estado: '))
+   brasil.append(estado.copy())
+print(brasil)
+
+2.
+print('Berçario Santa Casa\n')
+
+relatorio_lista = ['Nome do recém-nascido ', 'Data de nascimento ', 'Peso do recém-nascido ', 'Altura do bebê ']
+informacoes_lista = ['Bruna', '13/03/2021', '2.40 kg', '50 cm']
+
+dict_from_list = {r: i for r, i in zip (relatorio_lista, informacoes_lista)}
+print(dict_from_list)
+
+3.
+print("-"*16)
+print("Horóscopo Chinês")
+signo = ['Macaco','Galo','Cão','Porco', 'Rato', 'Boi', 'Tigre', 'Coelho', 'Dragão', 'Serpente', 'Cavalo', 'Carneiro']
+
+ano = int(input("Digite o ano do seu nascimento: "))
+signo = signo[ano%12]
+
+print("O Animal que representa você é:  ", signo)
+ano = [ano]
+signo = [signo]
+dict_from_list = dict(zip(signo, ano))
+print(dict_from_list)
+
+4.
+print("\nCadastro de Pessoa Física - MS")
+
+print("\n")
+cpf1 = {'João': 11586324717, 'Luana': 23142036518, 'Jorge': 35895147456}
+cpf2 = {'Pedro': 28966325411, 'Beatriz': 42522214418, 'Maria': 50325845621}
+
+
+print (dict(cpf1, **cpf2))

@@ -1,0 +1,18 @@
+Exercício 1.
+nome = input("Informe o nome do aluno(a):")
+nota = float(input("Informe a nota do primeiro semestre: "))
+nota02 = float(input("Informe a nota do segundo semestre: "))
+nota03 = float(input("Informe a nota do terceiro semestre: "))
+
+Exercício 2.
+times =('Santos', 'Palmeiras', 'Cuiabá', 'Flamengo', 'Corinthians', 'Fluminense', 'São Paulo', 'Botafogo', 'Grêmio', 'Ponte Preta')
+
+
+print(f'\nLista de times do campeonato: {times}\n')
+print(f'Os 5 primeiros são: {times[0:5]}')
+print(f'Os 4 últimos são: {times[-4:]}')
+print(f'Times em ordem alfabética: {sorted(times)}\n')
+print("As posições dos times:")
+print(f'                                 Flamengo {times.index("Flamengo")+1} posição.')
+print(f'                                 Corinthians {times.index("Corinthians")+1} posição.')
+print(f'                                 Cuiabá {times.index("Cuiabá")+1} posição.')

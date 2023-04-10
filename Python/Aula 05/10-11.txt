@@ -1,0 +1,5 @@
+exercicio 1.
+signos = ['Macaco', 'Galo', 'Cão', 'Porco', 'Rato', 'Boi', 'Tigre', 'Coelho', 'Dragão', 'Serpente', 'Cavalo', 'Carneiro']
+ano = int(input("Informe seu ano de nascimento: "))
+signos = signos[ano % 12]
+print(f'O seu signo é: {signos}')

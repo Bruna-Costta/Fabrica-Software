@@ -1,0 +1,124 @@
+1) João Papo-de-Pescador, homem de bem, comprou um microcomputador para controlar o rendimento diário de seu trabalho. Toda vez que ele traz um peso de peixes maior que o estabelecido pelo regulamento de pesca do estado de São Paulo (50 quilos) deve pagar uma multa de R$ 4,00 por quilo excedente. João precisa que você faça um programa que leia a variável peso (peso de peixes) e calcule o excesso. Gravar na variável excesso a quantidade de quilos além do limite e na variável multa o valor da multa que João deverá pagar. Imprima os dados do programa com as mensagens adequadas.
+
+print('Loja papo de pescador')
+pesoPeixe = float(input("Informe seu rendimento de hoje: "))
+
+if pesoPeixe > 50:
+    limite = pesoPeixe - 50
+    multa = limite * 4.00
+    print("A multa foi de R$ " + str(multa))
+
+if pesoPeixe < 50:
+    print("Sem multas hoje")
+
+2) O Hipermercado Tabajara está com uma promoção de carnes que é imperdível.
+
+print('Hipermercado Tabajara\n')
+print("1 - File Duplo\n2 - Alcatra\n3 - Picanha\n\n")
+tipo = int(input("Informe a opção que deseja: "))
+quantidade = float(input("Informe qual é a quantidade comprada? "))
+pagamento = int(input("A compra será paga com o cartão Tabajara? 1p/ SIM - 2p/ NÃO: "))
+
+if tipo == 1:
+    nome = "File Duplo"
+    if quantidade <= 5:
+        preco = quantidade * 4.90
+    else:
+        preco = quantidade * 5.80
+
+if tipo == 2:
+    nome = "Alcatra"
+    if quantidade <= 5:
+        preco = quantidade * 5.90
+    else:
+        preco = quantidade * 6.80
+
+if tipo == 3:
+    nome = "Picanha"
+    if quantidade <= 5:
+        preco = quantidade * 6.90
+    else:
+        preco = quantidade * 7.80
+
+if pagamento == 1:
+    r = "SIM"
+
+    desconto = ((preco * 5) / 100)
+    total = preco - desconto
+else:
+    r = "NÃO"
+    total = preco
+
+print("\n       CUPOM FISCAL     ")
+print("Carne               ", nome)
+print("Quantidade           KG ", quantidade)
+print("Preço                R$ ", preco)
+print("Cartão Tabajara    ", r)
+print("Total com desconto   R$ ", total)
+
+3. O Sr. Manoel Joaquim possui uma grande loja de artigos de R$ 1,99, com cerca de 10 caixas. Para agilizar o cálculo de quanto cada cliente deve pagar ele desenvolveu uma tabela que contém o número de itens que o cliente comprou e ao lado o valor da conta. Desta forma a atendente do caixa precisa apenas contar quantos itens o cliente está levando e olhar na tabela de preços. Você foi contratado para desenvolver o programa que monta esta tabela de preços, que conterá os preços de 1 até 50 produtos, conforme o exemplo abaixo:
+1.ex
+produto = 1
+artigos = 1.99
+
+print("Tabela de preços\n")
+while produto <= 50:
+    print("%02.d - R$ %.2f"%(produto, produto*artigos))
+    produto += 1
+
+2.ex
+produto = 1
+artigos = 1.99
+
+print("Tabela de preços\n")
+while produto <= 50:
+    print(produto,"- R$", produto*artigos)
+    produto += 1
+
+3.ex
+valor = 1.99
+print("\n\nLojas Quase Dois","\t\tTabela de Preços")
+
+
+for produtos in range (1,51):
+    print(produtos,"- R$",produtos*valor)
+
+
+4.Faça um programa que use a função valorPagamento para determinar o valor a ser pago por uma prestação de uma conta. O programa deverá solicitar ao usuário o valor da prestação e o número de dias em atraso e passar estes valores para a função valorPagamento, que calculará o valor a ser pago e devolverá este valor ao programa que a chamou. O programa deverá então exibir o valor a ser pago na tela. Após a execução o programa deverá voltar a pedir outro valor de prestação e assim continuar até que seja informado um valor igual a zero para a prestação. Neste momento o programa deverá ser encerrado, exibindo o relatório do dia, que conterá a quantidade e o valor total de prestações pagas no dia. O cálculo do valor a ser pago é feito da seguinte forma. Para pagamentos sem atraso, cobrar o valor da prestação. Quando houver atraso, cobrar 3% de multa, mais 0,1% de juros por dia de atraso.
+
+def valorPagamento (p, d):
+    return p*1.03 + 0.001*d
+
+c = t = 0
+
+while True:
+    p = float(input('Valor da prestação: '))
+    if p == 0:
+        print(f'Total: {t}. Quantidade: {c} ')
+        break
+
+    d = int(input('Dia em atraso: '))
+    print(f'Valor a ser pago: {valorPagamento(p, d) :.2f}')
+    print('---'*10)
+    c += 1
+    t += valorPagamento(p, d)
+
+5. Desenha moldura. Construa uma função que desenhe um retângulo usando os caracteres ‘+’ , ‘−’ e ‘| ‘. Esta função deve receber dois parâmetros, linhas e colunas, sendo que o valor por omissão é o valor mínimo igual a 1 e o valor máximo é 20. Se valores fora da faixa forem informados, eles devem ser modificados para valores dentro da faixa de forma elegante.
+
+def ret(l, a):
+    if l > 20:
+        l = 20
+    if a > 20:
+        a = 20
+    print('-+-'*l)
+    c =0
+    while c < a:
+        z = '|'
+        print(f'{z}{z:>{(l*3 - 1)}}')
+        c += 1
+    print('-+-' * l)
+
+
+l = int(input('Digite a largura: '))
+a = int(input('Digite a altura: '))
+ret(l, a)

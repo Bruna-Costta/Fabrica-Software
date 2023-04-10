@@ -1,0 +1,57 @@
+1) João Papo-de-Pescador, homem de bem, comprou um microcomputador para controlar o rendimento diário de seu trabalho. Toda vez que ele traz um peso de peixes maior que o estabelecido pelo regulamento de pesca do estado de São Paulo (50 quilos) deve pagar uma multa de R$ 4,00 por quilo excedente. João precisa que você faça um programa que leia a variável peso (peso de peixes) e calcule o excesso. Gravar na variável excesso a quantidade de quilos além do limite e na variável multa o valor da multa que João deverá pagar. Imprima os dados do programa com as mensagens adequadas.
+
+print('Loja papo de pescador')
+pesoPeixe = float(input("Informe seu rendimento de hoje: "))
+
+if pesoPeixe > 50:
+    limite = pesoPeixe - 50
+    multa = limite * 4.00
+    print("A multa foi de R$ " + str(multa))
+
+if pesoPeixe < 50:
+    print("Sem multas hoje")
+
+2) O Hipermercado Tabajara está com uma promoção de carnes que é imperdível.
+
+print('Hipermercado Tabajara\n')
+print("1 - File Duplo\n2 - Alcatra\n3 - Picanha\n\n")
+tipo = int(input("Informe a opção que deseja: "))
+quantidade = float(input("Informe qual é a quantidade comprada? "))
+pagamento = int(input("A compra será paga com o cartão Tabajara? 1p/ SIM - 2p/ NÃO: "))
+
+if tipo == 1:
+    nome = "File Duplo"
+    if quantidade <= 5:
+        preco = quantidade * 4.90
+    else:
+        preco = quantidade * 5.80
+
+if tipo == 2:
+    nome = "Alcatra"
+    if quantidade <= 5:
+        preco = quantidade * 5.90
+    else:
+        preco = quantidade * 6.80
+
+if tipo == 3:
+    nome = "Picanha"
+    if quantidade <= 5:
+        preco = quantidade * 6.90
+    else:
+        preco = quantidade * 7.80
+
+if pagamento == 1:
+    r = "SIM"
+
+    desconto = ((preco * 5) / 100)
+    total = preco - desconto
+else:
+    r = "NÃO"
+    total = preco
+
+print("\n       CUPOM FISCAL     ")
+print("Carne               ", nome)
+print("Quantidade           KG ", quantidade)
+print("Preço                R$ ", preco)
+print("Cartão Tabajara    ", r)
+print("Total com desconto   R$ ", total)

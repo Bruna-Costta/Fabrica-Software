@@ -1,0 +1,1 @@
+Compartilhando um pouco do que a prendi ao longo do curso técnico em Desenvolvimento de Sistemas.

@@ -1,0 +1,19 @@
+-- Select relatório brinde informações de entrada
+
+SELECT e.data_entrada_brinde, e.quantidade_entrada, o.nome_objeto_brinde, b.descricao
+FROM brinde AS b
+INNER JOIN entrada_brinde e ON e.fk_en_brinde = b.id_brinde
+INNER JOIN objeto_brinde o ON o.id_objeto_brinde = fk_objeto_brinde
+
+obs: Falta (registrado por adm)
+---------------------------------------------------------------------------------------------------------
+-- Select relatório brinde informações de saída
+
+SELECT e.data_entrada_brinde, s.data_saida, s.quantidade_saida, o.nome_objeto_brinde, b.descricao
+FROM brinde AS b
+JOIN objeto_brinde o on o.id_objeto_brinde = fk_objeto_brinde
+JOIN entrada_brinde e on e.fk_en_brinde = b.id_brinde
+JOIN saida_brinde s on s.fk_s_brinde = b.id_brinde
+
+obs: Falta (registrado por adm)
+-----------------------------------------------------------------------------------------------------------

@@ -1,0 +1,17 @@
+1.
+perguntas = ["Telefonou para a vítima?","Esteve no local do crime?", "Mora perto da vítima?", "Devia para a vítima?", "Já trabalhou com a vítima?"]
+resultado=0
+for i in perguntas:
+    i = int(input(f" {i} \n1) Sim \n2) Não "+"\n"))
+    if i == 1:
+        resultado +=1
+if resultado == 5:
+    print("Assassino")
+if resultado ==4 or resultado ==3:
+    print("Cúmplice")
+if resultado ==2:
+    print ("Suspeito")
+elif resultado<=1:
+    print ("Inocente")
+
+2.

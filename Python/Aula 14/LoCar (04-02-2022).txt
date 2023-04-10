@@ -1,0 +1,70 @@
+main.py
+
+from Veiculo import veiculo
+from Cliente import cliente
+
+Veiculo1 = veiculo('BRC-1303','Chevrolet','Onix', 'Prata', 'Não consta','04/02/2022', '08:45 am', 'Avenida Gury Marques', '13/03/2022', '11:45 am', 'Avenida Guaicurus', 'Não consta')
+Veiculo1.infoVeiculo()
+print('\n')
+Veiculo1.infoMovimentacao()
+print('\n')
+
+Cliente1 = cliente('Bruna Costa', '123-456-789-00', '000-000-000', '1111-2222-3333-4444', 'Rua: Jardim Bosque', 'bruna@gmail.com', '679988-7755')
+Cliente1.infoCliente()
+
+Veiculo.py
+
+class veiculo:
+    def __init__(self, placa, marca, modelo, cor, avarias, horaRetirada, horaDevolucao, localRetirada, localDevolucao, dataRetirada, dataDevolucao, taxaAdicional):
+        self.placa = placa
+        self.marca = marca
+        self.modelo = modelo
+        self.cor = cor
+        self.avarias = avarias
+        self.horaRetirada = horaRetirada
+        self.horaDevolucao = horaDevolucao
+        self.localRetirada = localRetirada
+        self.localDevolucao = localDevolucao
+        self.dataRetirada = dataRetirada
+        self.dataDevolucao = dataDevolucao
+        self.taxaAdicional = taxaAdicional
+
+    def infoVeiculo(self):
+        print('Informações do veículo:')
+        print('Placa: ', self.placa)
+        print('Marca: ', self.marca)
+        print('Modelo: ', self.modelo)
+        print('Cor: ', self.cor)
+        print('Avarias: ', self.avarias)
+
+    def infoMovimentacao(self):
+        print('Registro de movimentação: ')
+        print('Data de Retirada: ', self.dataRetirada)
+        print('Hora de Retirada: ', self.horaRetirada)
+        print('Local de Retirada: ', self.localRetirada)
+        print('Data de Devolução: ', self.dataDevolucao)
+        print('Horario de Devolução: ', self.horaDevolucao)
+        print('Local de Devolução: ', self.localDevolucao)
+        print('Taxa Adicional: ', self.taxaAdicional)
+
+Cliente.py
+
+class cliente:
+    def __init__(self, nome, cpf, cnh, cartaoCredito, endereco, email, telefone):
+        self.cpf = cpf
+        self.nome = nome
+        self.cnh = cnh
+        self.cartaoCredito = cartaoCredito
+        self.endereco = endereco
+        self.email = email
+        self.telefone = telefone
+
+    def infoCliente(self):
+        print('Informações do Cliente: ')
+        print('Nome: ', self.nome)
+        print('CPF: ', self.cpf)
+        print('CNH: ', self.cnh)
+        print('Endereço: ', self.endereco)
+        print('Telefone: ', self.telefone)
+        print('Cartão de Credito: ', self.cartaoCredito)
+        print('E-mail ou Gmail: ', self.email)

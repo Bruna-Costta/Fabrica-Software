@@ -1,0 +1,15 @@
+exercicio 1.
+var = int(input("Digite um número: "))
+print("O número informado foi: ", var)
+
+exercicio 2.
+var = int(input("Digite um número: "))
+var2 = int(input("Digite um segundo número: "))
+
+print("A soma foi", var+var2)
+
+exercicio 3.
+var = int(input("Digite a temperatura em farenheit: "))
+C = (5*(var-32)/9)
+
+print("A temperatura em graus Celsius é: ", C)

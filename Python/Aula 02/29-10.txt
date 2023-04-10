@@ -1,0 +1,32 @@
+1. exemplo
+a=10
+if a==10:
+    print ("a é igual a 10")
+else:
+    print ("a é diferente de 10")
+
+exercicio 1.
+var = float(input("Digite a nota do 1° semestre: "))
+var2 = float(input("Digite a nota do 2° semestre: "))
+media = (var+var2)/2
+print("A media do aluno foi ",media)
+
+if media >=6:
+    print("Aprovado")
+
+if media <=5:
+    print("Reprovado")
+
+exercicio 2. (incompleto)
+alcool = 5.80
+gasolina = 6.75
+
+var = float(input("Digite a distancia do seu destino em km: "))
+var2 = float(input("Digite KM por litro de gasolina que seu carro faz: "))
+var3 = float(input("Digite KM por litro de alcool que seu carro faz: "))
+
+if var/var2> var/var3:
+    print("O seu carro é mais econômico com Gasolina")
+
+else:
+    print("O seu carro é mais econômico com Álcool")

@@ -1,0 +1,35 @@
+from cProfile import label
+from cgitb import text
+from sqlite3 import Row
+from tkinter import *
+from tkinter.tix import COLUMN
+from turtle import width
+
+#configurando a interface
+
+janela=Tk()
+janela.title('Tela de Login')
+janela.geometry('600x400')
+janela.configure(background='#d3d3d3')
+
+apresentacao = Label(janela, text='LoCar.com.br - Alugueis de carros!', width=30)
+apresentacao.grid(column=0, row=0, padx=190, pady=10)
+
+#caixa de entrada
+
+username = Label(janela, text='Email', width=21)
+username.grid(column=0,row=1, padx=30, pady=30)
+entrada1 = Entry(janela, width=25)
+entrada1.grid(column=0, row=2)
+
+senha = Label(janela,text='Senha', width=21)
+senha.grid(column=0, row=3, padx=30,pady=30)
+astsenha = StringVar
+entrada2 = Entry(janela, textvariable= astsenha, show='*', width=25)
+entrada2.grid(column=0, row=4)
+
+#botao
+botao = Button(janela, text='Entrar', width=30)
+botao.grid(column=0, row=5, pady=50)
+
+janela.mainloop()

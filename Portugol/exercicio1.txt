@@ -1,0 +1,45 @@
+programa {
+	funcao inicio() {
+		
+		
+		inteiro contador = 1, matricula, altura, statusFisico = 0
+		cadeia sexo
+		
+		enquanto (contador <= 2)
+		{
+		    
+		    escreva ("Digite o número da sua matricula: ")
+		    leia(matricula)
+		
+		    
+		    escreva ("Digite o sexo (F) ou (M): ")
+		    leia (sexo)
+		
+		    
+		    escreva ("Digite sua altura em cm: ")
+		    leia (altura)
+		 
+		    escreva("Digite seu status físico: \n\n")
+		    escreva("1 - Bom \n")
+		    escreva("2 - Regular \n")
+		    escreva("3 - Ruim \n")
+		 	
+		    leia (statusFisico)
+		 
+		    se (statusFisico == 1){
+		        escreva ("Bom\n\n")
+		                            }
+		    se (statusFisico == 2){
+		        escreva ("Regular\n\n")}
+		  
+		    se (statusFisico == 3){
+		        escreva ("Ruim\n\n")}
+		        
+		        contador = contador + 1
+		    
+		    
+		}
+		 
+		    
+	}
+}

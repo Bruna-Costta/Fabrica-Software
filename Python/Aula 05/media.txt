@@ -1,0 +1,28 @@
+exercicio
+ficha = []
+m=[]
+v = True
+while v:
+    nome = str(input("Digite o nome do aluno: "))
+    nota1 = float(input("Digite a nota 1: "))
+    nota2 = float(input("Digite a nota 2: "))
+    nota3 = float(input(("Digite a nota 3: ")))
+    media = (nota1+ nota2 + nota3)/3
+    ficha.append(nome)
+    m.append(media)
+    tamanholista = len(m)
+    for cont in range(0, tamanholista):
+        print("Aluno {} media {:.2f}".format(ficha[cont], m[cont]))
+
+
+    func = True
+    while func:
+        f = str(input("Você quer continuar S/N:"))
+        if f in "Nn":
+            v = False
+            func = False
+            print("FIM")
+        elif f in "Ss":
+            func = False
+        else:
+            print('Digite S para continuar ou N para finalizar!')

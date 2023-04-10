@@ -1,0 +1,16 @@
+-- Select relatório equipamento informações do emprestimo
+
+SELECT p.dia_solicitacao, u.nome, e.cod_patrimonio, o.nome_objeto_equipamento, ec.estado_conservacao, e.descricao
+FROM equipamento AS e
+JOIN pedido_equipamento p on e.id_equipamento = p.fk_equipamento
+JOIN estado_conservacao ec ON e.fk_estado_conservacao = ec.id_estado_conservacao
+JOIN usuario u ON u.id_usuario = p.fk_pedido_usuario
+JOIN objeto_equipamento o ON o.id_objeto_equipamento = e.fk_objeto_equipamento
+
+obs: Falta (aprovado por adm)
+-----------------------------------------------------------------------------------------------------------------------
+
+-- Select relatório equipamento informações da devolução
+
+(tabela inexistente para select)
+obs: aguardando atualização

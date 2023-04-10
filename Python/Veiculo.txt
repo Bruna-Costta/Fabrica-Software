@@ -1,0 +1,15 @@
+class veiculo:
+    def __init__(self, placa, marca, modelo, cor, avarias):
+        self.placa = placa
+        self.marca = marca
+        self.modelo = modelo
+        self.cor = cor
+        self.avarias = avarias
+
+    def infoVeiculo(self):
+        print('As informações do veículo são.')
+        print('Placa: ', self.placa)
+        print('Marca: ', self.marca)
+        print('Modelo: ', self.modelo)
+        print('Cor: ', self.cor)
+        print('avarias: ', self.avarias)

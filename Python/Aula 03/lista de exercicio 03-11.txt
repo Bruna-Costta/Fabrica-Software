@@ -1,0 +1,65 @@
+exercicio 01.
+salario=int(input("Digite o valor do salario: "))
+
+if salario <=2000:
+    print("Aumento de 20%")
+
+else:
+    print("Aumento de 10%")
+
+exercicio 02.
+var=int(input("Digite um número qualquer: "))
+
+if var ==0:
+    print("Zero")
+
+if var >0:
+    print("Positivo")
+
+elif var <0:
+    print("Negativo")
+
+exercicio 03.
+produto=float(input("Digite o preço do produto: "))
+
+desconto = produto*0.10
+
+print("Seu desconto: R$ %2.2f"%+desconto)
+print("Preço do produto com desconto: R$ %2.2f"% +(produto-desconto))
+
+exercicio 04.
+granja=int(input("Digite a quantidade de frango na sua granja: "))
+var=float(4.00)
+var2=float(3.50)
+var3= granja*(2*var2+var)
+print("Custo total da granja: R$ %2.2f"%+var3)
+
+exercicio 05.
+sanduiche = int(input("Digite a quantidade de sanduíche: "))
+
+presunto= 0.5
+queijo= 0.5
+hamburgue = 0.10
+
+print("\nA quantidade de presunto é: ", presunto*sanduiche/1000)
+print("A quantidade de queijo é: ", queijo*sanduiche/1000)
+print("A quantidade de hamburgue é:",hamburgue*sanduiche/1000)
+
+exercicio 06.
+p = int(input("Quantidade de camisetas P: "))
+m = int(input("Quantidade de camisetas M: "))
+g = int(input("Quantidade de camisetas G: "))
+
+total = p*10+m*12+g*15
+print("O total de camisetas é: R$", total)
+
+exercicio 07.
+produto = float(input("Valor da compra: R$ "))
+
+if produto< 50.00:
+    print("O valor para revenda será de: R$ %2.2f"% +(produto + produto*0.45))
+    print("Você teve um lucro de 45%: R$", produto*0.45)
+
+else:
+    print("O valor para revenda será de: R$ %2.2f" % +(produto + produto * 0.30))
+    print("Você teve um lucro de 30%: R$", produto * 0.30)

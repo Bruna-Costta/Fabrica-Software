@@ -1,0 +1,491 @@
+usuario.py
+class Usuario:
+    def __init__(self, nome, login, senha):
+        self.__nome = nome
+        self.__login = login
+        self.__senha = senha
+
+    def valida_usuario(self, login, senha):
+        if login == self.__login and senha == self.__senha:
+            return True
+        else:
+            return False
+
+    #   Getters
+    @property
+    def nome(self):
+        return self.__nome
+
+    @property
+    def login(self):
+        return self.__login
+
+    @property
+    def senha(self):
+        return self.__senha
+
+    #   Setters
+    @nome.setter
+    def nome(self, novo_nome):
+        self.__nome = novo_nome
+
+    @login.setter
+    def login(self, novo_login):
+        self.__login = novo_login
+
+    @senha.setter
+    def senha(self, nova_senha):
+        self.__senha = nova_senha
+
+
+
+cliente.py
+from usuario import Usuario
+
+
+class Cliente(Usuario):
+    def __init__(self, nome, login, senha, cpf, cnh, numero_cartao, endereco, telefone, registro_multa):
+        super().__init__(nome, login, senha)
+        self.__cpf = cpf
+        self.__cnh = cnh
+        self.__numero_cartao = numero_cartao
+        self.__endereco = endereco
+        self.__telefone = telefone
+        self.registro_multa = registro_multa
+
+    @property
+    def cpf(self):
+        return self.__cpf
+
+    @property
+    def cnh(self):
+        return self.__cnh
+
+    @property
+    def numero_cartao(self):
+        return self.__numero_cartao
+
+    @property
+    def endereco(self):
+        return self.__endereco
+
+    @property
+    def telefone(self):
+        return self.__telefone
+
+    @property
+    def registro_multa(self):
+        return self.registro_multa
+
+
+    @cpf.setter
+    def cpf(self, novo_cpf):
+        self.__cpf = novo_cpf
+
+    @cnh.setter
+    def cnh(self, nova_cnh):
+        self.__cnh = nova_cnh
+
+    @numero_cartao.setter
+    def numero_cartao(self, novo_numero_cartao):
+        self.__numero_cartao = novo_numero_cartao
+
+    @endereco.setter
+    def endereco(self, novo_endereco):
+        self.__endereco = novo_endereco
+
+    @telefone.setter
+    def telefone(self, novo_telefone):
+        self.__telefone = novo_telefone
+
+    @registro_multa.setter
+    def registro_multa(self, novo_registro_multa):
+        self.registro_multa = novo_registro_multa
+
+
+
+funcionario.py
+from usuario import Usuario
+
+
+class Funcionario(Usuario):
+    def __init__(self, nome, login, senha, matricula):
+        super().__init__(nome, login, senha)
+        self.__matricula = matricula
+
+    @property
+    def matricula(self):
+        return self.__matricula
+
+    @matricula.setter
+    def matricula(self, nova_matricula):
+        self.__matricula = nova_matricula
+
+
+reserva.py
+class Reserva:
+    def __init__(self, cliente, veiculo, data_agendamento, data_inicio, periodo):
+        self.__cliente = cliente
+        self.__veiculo = veiculo
+        self.__data_agendamento = f'{data_agendamento.day}/{data_agendamento.month}/{data_agendamento.year}'
+        self.__data_inicio = data_inicio
+        self.__periodo = periodo
+        self.__valor_total = None
+
+    #   getters
+    @property
+    def cliente(self):
+        return self.cliente
+
+    @property
+    def veiculo(self):
+        return self.veiculo
+
+    @property
+    def data_agendamento(self):
+        return self.__data_agendamento
+
+    @property
+    def data_inicio(self):
+        return self.__data_inicio
+
+    @property
+    def periodo(self):
+        return self.__periodo
+
+    @property
+    def valor_total(self):
+        return self.__valor_total
+
+    #   setters
+    @veiculo.setter
+    def veiculo(self, novo_veiculo):
+        self.__veiculo = novo_veiculo
+
+    @data_inicio.setter
+    def data_inicio(self, nova_data_inicio):
+        self.__data_inicio = nova_data_inicio
+
+    @periodo.setter
+    def periodo(self, novo_periodo):
+        self.__periodo = novo_periodo
+
+
+
+main.py
+from funcionario import Funcionario
+from cliente import Cliente
+from reserva import Reserva
+from veiculo import Veiculo
+from datetime import date
+import pymysql.cursors
+from contextlib import contextmanager
+
+
+@contextmanager
+def conecta():
+    conexao = pymysql.connect(
+        host='127.0.0.1',
+        user='root',
+        password='',
+        db='locar',
+        charset='utf8mb4',
+        cursorclass=pymysql.cursors.DictCursor
+    )
+    #   Tratamento de exceção (Má Conexão)
+    try:
+        yield conexao
+    finally:
+        conexao.close()  # encerra a conexão
+
+
+def insere(sql):
+    with conecta() as conexao:
+        with conexao.cursor() as cursor:
+            cursor.execute(sql)
+            conexao.commit()
+            print('\033[1;32mInserido com SUCESSO!!!\033[m')
+
+
+def consulta(sql):
+    with conecta() as conexao:
+        with conexao.cursor() as cursor:
+            cursor.execute(sql)
+            resultado = cursor.fetchone()
+            return resultado
+
+
+while True:
+    print('LoCar')
+    opc = int(input('1. Cadastrar Usuário'
+                    '\n2. Cadastrar Veículo'
+                    '\n3. Cadastrar Reserva'
+                    '\n4. Consultas'
+                    '\n5. Sair'
+                    '\n:'))
+    if opc == 5:  # Sair
+        print('Até Mais!!!')
+        break
+    #   Cadastrar Usuário
+    elif opc == 1:
+        print('\033[1;33mCadastro de Usuário\033[m')
+        while True:
+            opcUsuario = int(input('1. Funcionário'
+                                   '\n2. Cliente'
+                                   '\n3. Voltar'
+                                   '\n:'))
+            if opcUsuario == 3:
+                break
+            #   Cadastro de Funcionário
+            elif opcUsuario == 1:
+                print('\033[1;33mCadastro de Funcionário\033[m')
+                #   Instancia da classe funcionário
+                funcionario = Funcionario(input('Nome do Funcionário: '),
+                                          input('Login do Funcionário: '),
+                                          input('Senha do Funcionário: '),
+                                          input('Matricula do Funcionário: '))
+                #   Conecta e insere FUNCIONARIO no banco
+                insere(f"INSERT INTO funcionarios VALUES (DEFAULT, '{funcionario.nome}', '{funcionario.login}', "
+                       f"'{funcionario.senha}', '{funcionario.matricula}')")
+
+            elif opcUsuario == 2:
+                print('\033[1;33mCadastro de Cliente\033[m')
+                cliente = Cliente(input('Nome do Cliente: '),
+                                  input('Login do Cliente: '),
+                                  input('Senha do Cliente: '),
+                                  input('CPF do Cliente: '),
+                                  input('CNH do Cliente: '))
+                #    Conecta e insere CLIENTE no banco
+                insere(f"INSERT INTO clientes VALUES (DEFAULT, '{cliente.nome}', '{cliente.login}', '{cliente.senha}', "
+                       f"'{cliente.cpf}', '{cliente.cnh}')")
+            else:
+                print('\033[1;31mOpção inválida!!\033[m')
+    # Cadastrar Veículo
+    elif opc == 2:
+        print('\033[1;33mCadastro de Veículo\033[m')
+        veiculo = Veiculo(input('Qual o tipo do Veiculo?: '),
+                          input('Qual a marca do Veículo?: '),
+                          input('Qual o modelo do Veículo?: '),
+                          input('Qual a cor do Veículo?: '),
+                          input('Qual o número do chassi do veículo?: '),
+                          input('Qual o ano do Veículo?: '),
+                          input('Qual a placa do Veículo?: '),
+                          input('Qual o valor da diária do Veículo?: '))
+        #   Conexão com o banco
+        insere(f"INSERT INTO veiculos VALUES (DEFAULT, '{veiculo.tipo}', '{veiculo.marca}', '{veiculo.cor}', "
+               f"'{veiculo.modelo}', '{veiculo.ano}', '{veiculo.n_chassi}', '{veiculo.placa}', '{veiculo.valor_diaria}')")
+    # Cadastrar Reserva
+    elif opc == 3:
+        print('\033[1;33mCadastro de Reserva\033[m')
+        cpf_cliente = input('A reserva será feita no nome de que cliente?: ')
+        placa_veiculo = input('Qual o Veículo?: ')
+        #   Fazer a consulta do Cliente e Veículo
+        cliente = 'Resultado da busca'
+        veiculo = 'Resultado da busca'
+        reserva = Reserva(cliente,
+                          veiculo,
+                          date.today(),
+                          input('Qual a data de Inicio da Aluguel?: '),
+                          input('Qual a duração do Aluguel?: (em dias)'))
+        #   Falta conexão
+    # Consultas
+    elif opc == 4:
+        print('\033[1;33mConsultas\033[m')
+        while True:
+            opcConsulta = int(input('1. Consultar Usuário'
+                                    '\n2. Consultar Veículo'
+                                    '\n3. Consultar Reserva'
+                                    '\n4. Voltar'
+                                    '\n:'))
+            if opcConsulta == 4:
+                break
+            #   Consulta USUÁRIO
+            if opcConsulta == 1:
+                opcConsultaUsuario = int(input('1. Funcionário'
+                                               '\n2. Cliente'
+                                               '\n3. Voltar'
+                                               '\n:'))
+                #   FUNCIONÁRIO
+                if opcConsultaUsuario == 1:
+                    matricula = input('Qual a Matricula do Funcionário?: ')
+                    resultado = consulta(f"SELECT * FROM funcionarios WHERE matricula = '{matricula}'")
+                    for k, v in resultado.items():
+                        print(f'{k}: {v}')
+                #   CLIENTE
+                elif opcConsultaUsuario == 2:
+                    cpf = input('Qual o CPF do Cliente?: ')
+                    resultado = consulta(f"SELECT * FROM clientes WHERE cpf = '{cpf}'")
+                    for k, v in resultado.items():
+                        print(f'{k}: {v}')
+                #   SAIR DA CONSULTA DO USUÁRIO
+                elif opcConsultaUsuario == 3:
+                    break
+                else:
+                    print('\033[1;31mOpção inválida!!!\033[m')
+            #   CONSULTA DE VEÍCULO
+            elif opcConsulta == 2:
+                placa = input('Qual o número da placa?: ')
+                resultado = consulta(F"SELECT * FROM veiculos where numero_placa = '{placa}'")
+                for k, v in resultado.items():
+                    print(f'{k}: {v}')
+            #   CONSULTA RESERVA
+            elif opcConsulta == 3:
+                pass
+            else:
+                print('\033[1;31mOpcão inválida!!!\033[m')
+
+
+teste.py
+from tkinter import *
+
+class Application:
+    def __init__(self, master=None):
+        self.fontePadrao = ("Arial", "10")
+        self.primeiroContainer = Frame(master)
+        self.primeiroContainer["pady"] = 10
+        self.primeiroContainer.pack()
+
+        self.segundoContainer = Frame(master)
+        self.segundoContainer["padx"] = 20
+        self.segundoContainer.pack()
+
+        self.terceiroContainer = Frame(master)
+        self.terceiroContainer["padx"] = 20
+        self.terceiroContainer.pack()
+
+        self.quartoContainer = Frame(master)
+        self.quartoContainer["pady"] = 20
+        self.quartoContainer.pack()
+
+        self.titulo = Label(self.primeiroContainer, text="Alugueis de carros")
+        self.titulo["font"] = ("Arial", "10", "bold")
+        self.titulo.pack()
+
+        self.nomeLabel = Label(self.segundoContainer,text="Matricula", font=self.fontePadrao)
+        self.nomeLabel.pack(side=LEFT)
+
+        self.nome = Entry(self.segundoContainer)
+        self.nome["width"] = 30
+        self.nome["font"] = self.fontePadrao
+        self.nome.pack(side=LEFT)
+
+        self.senhaLabel = Label(self.terceiroContainer, text="Senha", font=self.fontePadrao)
+        self.senhaLabel.pack(side=LEFT)
+
+        self.senha = Entry(self.terceiroContainer)
+        self.senha["width"] = 30
+        self.senha["font"] = self.fontePadrao
+        self.senha["show"] = "*"
+        self.senha.pack(side=LEFT)
+
+        self.autenticar = Button(self.quartoContainer)
+        self.autenticar["text"] = "Autenticar"
+        self.autenticar["font"] = ("Calibri", "8")
+        self.autenticar["width"] = 12
+        self.autenticar["command"] = self.verificaSenha
+        self.autenticar.pack()
+
+        self.mensagem = Label(self.quartoContainer, text="", font=self.fontePadrao)
+        self.mensagem.pack()
+
+    #Método verificar senha
+    def verificaSenha(self):
+        usuario = self.nome.get()
+        senha = self.senha.get()
+        if usuario == "Bruna" and senha == "bruna123":
+            self.mensagem["text"] = "Autenticado"
+        else:
+            self.mensagem["text"] = "Erro na autenticação"
+
+
+root = Tk()
+Application(root)
+root.mainloop()
+
+
+veiculo.py
+class Veiculo:
+    def __init__(self, tipo, marca, modelo, cor, n_chassi, ano, placa, valor_diaria, inspecao):
+        self.__tipo = tipo
+        self.__marca = marca
+        self.__modelo = modelo
+        self.__cor = cor
+        self.__n_chassi = n_chassi
+        self.__ano = ano
+        self.__placa = placa
+        self.__valor_diaria = valor_diaria
+        self.__inspecao = inspecao
+
+    #   getters
+    @property
+    def tipo(self):
+        return self.__tipo
+
+    @property
+    def marca(self):
+        return self.__marca
+
+    @property
+    def modelo(self):
+        return self.__modelo
+
+    @property
+    def cor(self):
+        return self.__cor
+
+    @property
+    def n_chassi(self):
+        return self.__n_chassi
+
+    @property
+    def ano(self):
+        return self.__ano
+
+    @property
+    def placa(self):
+        return self.__placa
+
+    @property
+    def valor_diaria(self):
+        return self.__valor_diaria
+
+    @property
+    def inspecao(self):
+        return self.__inspecao
+
+    #   setters
+    @tipo.setter
+    def tipo(self, novo_tipo):
+        self.__tipo = novo_tipo
+
+    @marca.setter
+    def marca(self, nova_marca):
+        self.__marca = nova_marca
+
+    @modelo.setter
+    def modelo(self, novo_modelo):
+        self.__modelo = novo_modelo
+
+    @cor.setter
+    def cor(self, nova_cor):
+        self.__cor = nova_cor
+
+    @n_chassi.setter
+    def n_chassi(self, novo_n_chassi):
+        self.__n_chassi = novo_n_chassi
+
+    @ano.setter
+    def ano(self, novo_ano):
+        self.__ano = novo_ano
+
+    @placa.setter
+    def placa(self, nova_placa):
+        self.__placa = nova_placa
+
+    @valor_diaria.setter
+    def valor_diaria(self, novo_valor_diaria):
+        self.__valor_diaria = novo_valor_diaria
+
+    @inspecao.setter
+    def inspecao(self, nova_inspecao):
+        self.__inspecao

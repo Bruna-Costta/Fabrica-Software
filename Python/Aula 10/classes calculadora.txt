@@ -1,0 +1,39 @@
+calculadora.py
+class Calculadora:
+    def __init__(self, num1, num2):
+        self.num1 = num1
+        self.num2 = num2
+
+    def soma (self):
+        soma = self.num1 + self.num2
+        print("A soma é: ", + soma)
+
+    def subtrair (self):
+        subtrair = self.num1 - self.num2
+        print("A subtração é: ", + subtrair)
+
+    def multiplicar (self):
+        multiplicar = self.num1 * self.num2
+        print("A multiplicação é: ", + multiplicar)
+
+    def dividir (self):
+        dividir = self.num1 / self.num2
+        print("A divisão é: ", + dividir)
+
+main.py
+from calculadora import Calculadora
+
+num1 = Calculadora (13,3)
+num2 = Calculadora (2,7)
+
+num1.soma()
+num2.soma()
+
+num1.subtrair()
+num2.subtrair()
+
+num1.multiplicar()
+num2.multiplicar()
+
+num1.dividir()
+num2.dividir()

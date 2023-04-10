@@ -1,0 +1,33 @@
+1 - Para controlar a vendas de bangalôs de uma festa, Crie um programa com as seguinte definições:
+Crie uma classe chamada Bangalô, que possui um valor em reais e um método imprimirValor(). 
+Crie uma classe BangalôVIP, que herda de Bangalô e possui um valor adicional. 
+Crie um método que retorne o valor do BangalôVIP (com o adicional incluído). 
+Crie um programa para criar as instâncias de Bangalô e BangalôVIP, mostrando a diferença de preços.
+
+main.py
+from bangalô import Bangalo
+from bangalô_vip import BangaloVIP
+
+a = Bangalo(280)
+a.imprimirValor()
+b = BangaloVIP(500,280)
+b.imprimirValor2()
+
+bangalô.py
+class Bangalo:
+    def __init__(self, preco):
+        self.preco = preco
+
+    def imprimirValor(self):
+        print("O valor do ingresso é: R$ ", self.preco)
+
+bangalô_vip.py
+import bangalô
+
+class BangaloVIP(bangalô.Bangalo):
+    def __init__(self, precoAdd, preco):
+        super().__init__(preco)
+        self.precoAdd = precoAdd
+
+    def imprimirValor2(self):
+        print(f'Valor do ingresso VIP é: R$ ', self.precoAdd + self.preco)
